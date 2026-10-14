@@ -1,29 +1,18 @@
 import { loadSettings, saveSettings, loadGame } from "./state.js";
 import { randomMenuLine } from "./host.js";
-import { isSoundOn, toggleSound, unlockAudio } from "./audio.js";
-
-const AVATARS = ["🐧", "🐻‍❄️", "❄️", "🧊", "🧪", "🧊", "☃️", "🦭"];
-// penguin, polar bear, snowflake, ice-cube-ish stand-ins for igloo/yeti/ice cube/snowman/narwhal
-const AVATAR_ICONS = ["🐧", "🐻‍❄️", "❄️", "🏠", "👹", "🧊", "☃️", "🐬"];
+import { isSoundOn, toggleSound, unlockAudio, play } from "./audio.js";
+import { AVATAR_ICONS } from "./avatars.js";
+import { showScreen, getScreen } from "./router.js";
+import * as GameFlow from "./gameflow.js";
+import { registerServiceWorker } from "./pwa.js";
 
 const settings = loadSettings();
-
-const screens = {
-  splash: document.getElementById("screen-splash"),
-  menu: document.getElementById("screen-menu"),
-  howto: document.getElementById("screen-howto"),
-  setup: document.getElementById("screen-setup"),
-};
-
-function showScreen(name) {
-  for (const key of Object.keys(screens)) {
-    screens[key].hidden = key !== name;
-  }
-}
+const screens = { splash: getScreen("splash") };
 
 function initSplash() {
   const goToMenu = () => {
     unlockAudio();
+    play("marquee");
     screens.splash.removeEventListener("click", goToMenu);
     enterMenu();
   };
@@ -31,16 +20,20 @@ function initSplash() {
   setTimeout(goToMenu, 1500);
 }
 
-function enterMenu() {
+let hostLineTimer = null;
+
+export function enterMenu() {
   showScreen("menu");
   refreshSoundButton();
   cycleHostLine();
-  setInterval(cycleHostLine, 6000);
+  if (!hostLineTimer) hostLineTimer = setInterval(cycleHostLine, 6000);
 
   const resumeBtn = document.getElementById("btn-resume");
-  if (loadGame()) {
-    resumeBtn.hidden = false;
-  }
+  resumeBtn.hidden = !loadGame();
+  resumeBtn.onclick = () => {
+    play("tap");
+    GameFlow.resumeGame();
+  };
 }
 
 function cycleHostLine() {
@@ -58,20 +51,25 @@ function refreshSoundButton() {
 
 function wireMenu() {
   document.getElementById("btn-play").addEventListener("click", () => {
+    play("tap");
     showScreen("setup");
     initSetupForm();
   });
   document.getElementById("btn-howto").addEventListener("click", () => {
+    play("tap");
     showScreen("howto");
   });
   document.getElementById("btn-sound").addEventListener("click", () => {
     toggleSound();
+    play("tap");
     refreshSoundButton();
   });
   document.getElementById("btn-howto-back").addEventListener("click", () => {
+    play("tap");
     showScreen("menu");
   });
   document.getElementById("btn-setup-back").addEventListener("click", () => {
+    play("tap");
     showScreen("menu");
   });
 }
@@ -173,6 +171,7 @@ function validateSetupForm() {
 function wireSetupForm() {
   document.getElementById("player-dec").addEventListener("click", () => {
     if (settings.players > 1) {
+      play("tap");
       settings.players--;
       renderPlayerNames();
       syncStepperDisplay();
@@ -181,6 +180,7 @@ function wireSetupForm() {
   });
   document.getElementById("player-inc").addEventListener("click", () => {
     if (settings.players < 8) {
+      play("tap");
       settings.players++;
       renderPlayerNames();
       syncStepperDisplay();
@@ -191,6 +191,7 @@ function wireSetupForm() {
   document.getElementById("difficulty-seg").addEventListener("click", (e) => {
     const btn = e.target.closest(".seg-btn");
     if (!btn) return;
+    play("tap");
     settings.difficulty = btn.dataset.value;
     document.querySelectorAll("#difficulty-seg .seg-btn").forEach((b) => b.classList.toggle("is-active", b === btn));
   });
@@ -198,15 +199,17 @@ function wireSetupForm() {
   document.getElementById("timer-seg").addEventListener("click", (e) => {
     const btn = e.target.closest(".seg-btn");
     if (!btn) return;
+    play("tap");
     settings.timer = Number(btn.dataset.value);
     document.querySelectorAll("#timer-seg .seg-btn").forEach((b) => b.classList.toggle("is-active", b === btn));
   });
 
   document.getElementById("btn-setup-play").addEventListener("click", () => {
     if (!validateSetupForm()) return;
+    play("tap");
     settings.names = settings.names.map((n, i) => n.trim() || `Player ${i + 1}`);
     saveSettings(settings);
-    // Game loop / Get Ready screen lands in Phase 2.
+    GameFlow.startNewGame(settings);
   });
 }
 
@@ -215,6 +218,7 @@ function boot() {
   wireMenu();
   wireInstallPrompt();
   wireSetupForm();
+  registerServiceWorker();
 }
 
 boot();

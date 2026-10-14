@@ -122,7 +122,95 @@
     </div>
   </section>
 
+  <section id="screen-getready" class="screen screen-getready" hidden aria-label="Get Ready">
+    <div class="getready-count" id="getready-count">3</div>
+    <p class="getready-caption">Chilly Chuck says: let's play!</p>
+  </section>
+
+  <section id="screen-game" class="screen screen-game" hidden aria-label="Game">
+    <header class="hud-bar">
+      <div id="hud-round" class="hud-round">Round 1</div>
+      <div id="hud-strip" class="hud-strip"></div>
+    </header>
+
+    <div id="turn-intro" class="turn-intro">
+      <p id="turn-intro-text" class="turn-intro-text">PASS THE DEVICE TO<br><strong id="turn-intro-name">Player 1</strong></p>
+      <button id="btn-ready" class="btn btn-buzzer btn-gold">READY</button>
+    </div>
+
+    <div id="card-stage" class="card-stage" hidden>
+      <div class="timer-wrap" id="timer-wrap">
+        <svg id="timer-ring" class="timer-ring" viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="timer-ring-bg" cx="50" cy="50" r="44"></circle>
+          <circle id="timer-ring-fg" class="timer-ring-fg" cx="50" cy="50" r="44"></circle>
+        </svg>
+        <span id="timer-seconds" class="timer-seconds">30</span>
+        <span id="timer-no-timer" class="timer-no-timer" hidden aria-hidden="true">❄️</span>
+      </div>
+
+      <div id="game-card" class="game-card">
+        <div class="card-face card-face-front">
+          <span id="card-badge" class="card-badge">🗣️ LAN</span>
+          <span id="card-snow" class="card-snow">❄️</span>
+          <p id="card-prompt" class="card-prompt">Prompt goes here</p>
+        </div>
+        <div class="card-face card-face-back">
+          <span class="card-answer-label">ANSWER</span>
+          <p id="card-answer" class="card-answer">Answer goes here</p>
+          <p id="card-answer-note" class="card-answer-note" hidden></p>
+        </div>
+      </div>
+
+      <div id="brain-freeze-stamp" class="brain-freeze-stamp" hidden>BRAIN FREEZE!</div>
+
+      <div class="card-actions">
+        <button id="btn-thaw" class="btn btn-buzzer btn-ghost btn-small">❄️ THAW</button>
+        <button id="btn-flip" class="btn btn-buzzer btn-ice">FLIP CARD</button>
+      </div>
+
+      <div id="judge-actions" class="judge-actions" hidden>
+        <button id="btn-froze" class="btn btn-buzzer btn-red">FROZE</button>
+        <button id="btn-nailed" class="btn btn-buzzer btn-green">NAILED IT! +100</button>
+      </div>
+    </div>
+
+    <button id="btn-pause" class="btn-pause" aria-label="Pause">⏸</button>
+
+    <div id="pause-overlay" class="pause-overlay" hidden>
+      <div class="pause-card">
+        <h2>Paused</h2>
+        <button id="btn-resume-game" class="btn btn-buzzer btn-gold">RESUME</button>
+        <button id="btn-quit-game" class="btn btn-buzzer btn-ghost">QUIT TO MAIN MENU</button>
+      </div>
+    </div>
+
+    <div id="quit-confirm-overlay" class="pause-overlay" hidden>
+      <div class="pause-card">
+        <h2>Quit game?</h2>
+        <p>Your progress will be lost.</p>
+        <button id="btn-quit-confirm" class="btn btn-buzzer btn-red">QUIT</button>
+        <button id="btn-quit-cancel" class="btn btn-buzzer btn-ghost">CANCEL</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-scoreboard" class="screen screen-scoreboard" hidden aria-label="Final Scoreboard">
+    <div class="trophy-wrap">
+      <span class="trophy-icon" aria-hidden="true">🏆</span>
+      <h1 id="winner-name" class="winner-name">Player 1 Wins!</h1>
+      <p class="winner-sub">Stay cool, champ.</p>
+    </div>
+    <div id="scoreboard-list" class="scoreboard-list"></div>
+    <div id="awards-list" class="awards-list"></div>
+    <div class="scoreboard-actions">
+      <button id="btn-play-again" class="btn btn-buzzer btn-gold">PLAY AGAIN</button>
+      <button id="btn-scoreboard-menu" class="btn btn-buzzer btn-ghost">MAIN MENU</button>
+    </div>
+  </section>
+
 </div>
+
+<button id="update-toast" class="update-toast" hidden>⬆️ Update ready — tap to refresh</button>
 
 <div id="aria-announcer" class="sr-only" aria-live="assertive"></div>
 

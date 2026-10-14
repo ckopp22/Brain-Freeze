@@ -231,6 +231,22 @@ h1, h2, h3 {
   animation: bf-pulse 1.6s ease-in-out infinite;
 }
 
+.update-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--safe-bottom) + 16px);
+  transform: translateX(-50%);
+  z-index: 10;
+  background: var(--gold);
+  color: #3A2600;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn-pulse {
     animation: none;

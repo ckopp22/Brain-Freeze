@@ -21,11 +21,86 @@
   animation: bf-fade-in 0.25s ease;
 }
 
+@keyframes bf-ring-pulse {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  50% { filter: drop-shadow(0 0 8px var(--red)); }
+}
+
+.timer-wrap.is-urgent .timer-ring-fg {
+  animation: bf-ring-pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes bf-card-in {
+  from { transform: translateY(24px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.game-card.is-entering {
+  animation: bf-card-in 0.3s ease-out;
+}
+
+@keyframes bf-stamp-slam {
+  0% { transform: rotate(-6deg) scale(2); opacity: 0; }
+  60% { transform: rotate(-6deg) scale(0.95); opacity: 1; }
+  100% { transform: rotate(-6deg) scale(1); opacity: 1; }
+}
+
+.brain-freeze-stamp.is-active {
+  animation: bf-stamp-slam 0.4s ease-out;
+}
+
+@keyframes bf-frost-crawl {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.card-stage.is-frozen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(242,251,255,0.9), rgba(242,251,255,0.3) 70%);
+  animation: bf-frost-crawl 0.5s ease-out;
+  pointer-events: none;
+  border-radius: var(--radius);
+  z-index: 1;
+}
+
+@keyframes bf-snowfall {
+  from { transform: translateY(-10px) rotate(0deg); }
+  to { transform: translateY(600px) rotate(360deg); }
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  font-size: 1.4rem;
+  animation: bf-snowfall linear forwards;
+  pointer-events: none;
+}
+
+@keyframes bf-score-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); color: var(--green); }
+  100% { transform: scale(1); }
+}
+
+.hud-chip.is-scoring .hud-chip-name {
+  animation: bf-score-pop 0.5s ease-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .screen {
     animation: none;
   }
   .frost-canvas {
     display: none;
+  }
+  .game-card.is-entering,
+  .brain-freeze-stamp.is-active,
+  .card-stage.is-frozen::before,
+  .confetti-piece,
+  .hud-chip.is-scoring .hud-chip-name,
+  .timer-wrap.is-urgent .timer-ring-fg {
+    animation: none;
   }
 }
