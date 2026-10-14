@@ -1,0 +1,238 @@
+:root {
+  --navy: #0B1633;
+  --navy-light: #142247;
+  --ice: #7FD8FF;
+  --frost: #F2FBFF;
+  --magenta: #FF3D9A;
+  --gold: #FFC531;
+  --green: #36E6A0;
+  --red: #FF5C5C;
+
+  --font-display: "Lilita One", "Bungee", system-ui, sans-serif;
+  --font-body: "Nunito", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+
+  --max-col: 560px;
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--navy);
+  color: var(--frost);
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow: hidden;
+  touch-action: none;
+}
+
+.app-host {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% -10%, var(--navy-light) 0%, var(--navy) 60%);
+}
+
+button, input {
+  font-family: var(--font-body);
+}
+
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--max-col);
+  margin: 0 auto;
+  padding: calc(var(--safe-top) + 12px) calc(var(--safe-right) + 16px) calc(var(--safe-bottom) + 12px) calc(var(--safe-left) + 16px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  user-select: none;
+}
+
+.screen[hidden] {
+  display: none;
+}
+
+/* Marquee */
+.marquee-frame {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 16px 12px;
+  margin-top: 8px;
+  border: 4px solid var(--ice);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(127, 216, 255, 0.08), rgba(127, 216, 255, 0));
+  box-shadow: 0 0 24px rgba(127, 216, 255, 0.25) inset, 0 0 18px rgba(127, 216, 255, 0.15);
+  flex-shrink: 0;
+}
+
+.marquee-small {
+  padding: 10px 12px;
+  margin-top: 4px;
+}
+
+.marquee-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 11vw, 3.2rem);
+  color: var(--frost);
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--ice), 0 3px 0 var(--magenta), 0 6px 14px rgba(0,0,0,0.4);
+  margin: 0;
+}
+
+.marquee-title-small {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 7vw, 2rem);
+  color: var(--frost);
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px var(--ice), 0 2px 0 var(--magenta);
+}
+
+.marquee-tagline {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ice);
+  margin: 6px 0 0;
+}
+
+.marquee-bulbs::before,
+.marquee-bulbs::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 10px;
+  background-image: radial-gradient(circle, var(--gold) 0 3px, transparent 4px);
+  background-size: 22px 10px;
+  background-repeat: repeat-x;
+}
+
+.marquee-bulbs::before {
+  top: 4px;
+}
+
+.marquee-bulbs::after {
+  bottom: 4px;
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: var(--navy);
+  background: var(--frost);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.25), 0 6px 14px rgba(0,0,0,0.3);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.btn-buzzer.btn-gold {
+  background: linear-gradient(180deg, #FFDA70, var(--gold));
+  color: #3A2600;
+  box-shadow: 0 4px 0 #C9900F, 0 6px 14px rgba(255, 197, 49, 0.4);
+}
+
+.btn-buzzer.btn-ice {
+  background: linear-gradient(180deg, #BFF0FF, var(--ice));
+  color: var(--navy);
+  box-shadow: 0 4px 0 #3FA9D6, 0 6px 14px rgba(127, 216, 255, 0.35);
+}
+
+.btn-buzzer.btn-magenta {
+  background: linear-gradient(180deg, #FF7FC0, var(--magenta));
+  color: #3A0020;
+  box-shadow: 0 4px 0 #B8166A, 0 6px 14px rgba(255, 61, 154, 0.35);
+}
+
+.btn-buzzer.btn-green {
+  background: linear-gradient(180deg, #8FF5CF, var(--green));
+  color: #0A3A28;
+  box-shadow: 0 4px 0 #1EAE77, 0 6px 14px rgba(54, 230, 160, 0.35);
+}
+
+.btn-buzzer.btn-red {
+  background: linear-gradient(180deg, #FF9D9D, var(--red));
+  color: #3A0A0A;
+  box-shadow: 0 4px 0 #C92E2E, 0 6px 14px rgba(255, 92, 92, 0.35);
+}
+
+.btn-buzzer.btn-ghost {
+  background: rgba(242, 251, 255, 0.08);
+  color: var(--frost);
+  border: 2px solid rgba(127, 216, 255, 0.4);
+  box-shadow: none;
+}
+
+.btn-buzzer.btn-ghost:active {
+  box-shadow: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.btn-pulse {
+  animation: bf-pulse 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-pulse {
+    animation: none;
+  }
+}

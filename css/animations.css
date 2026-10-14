@@ -1,0 +1,31 @@
+.frost-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes bf-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes bf-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.screen {
+  animation: bf-fade-in 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    animation: none;
+  }
+  .frost-canvas {
+    display: none;
+  }
+}

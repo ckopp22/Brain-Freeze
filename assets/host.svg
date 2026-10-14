@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 160" role="img" aria-label="Chilly Chuck">
+  <ellipse cx="70" cy="150" rx="30" ry="8" fill="#000" opacity="0.2"/>
+  <!-- legs -->
+  <rect x="58" y="128" width="10" height="20" rx="3" fill="#2A2A2A"/>
+  <rect x="74" y="128" width="10" height="20" rx="3" fill="#2A2A2A"/>
+  <!-- body (sparkly suit) -->
+  <circle cx="70" cy="110" r="34" fill="#F2FBFF"/>
+  <path d="M40 110a30 30 0 0 1 60 0 34 34 0 0 1-60 0z" fill="#0B1633" opacity="0.08"/>
+  <circle cx="58" cy="104" r="2" fill="#FFC531"/>
+  <circle cx="82" cy="98" r="2" fill="#7FD8FF"/>
+  <circle cx="70" cy="118" r="2" fill="#FF3D9A"/>
+  <circle cx="86" cy="116" r="1.6" fill="#FFC531"/>
+  <circle cx="54" cy="118" r="1.6" fill="#7FD8FF"/>
+  <!-- bow tie -->
+  <path d="M62 88 L70 94 L62 100 Z" fill="#FF3D9A"/>
+  <path d="M78 88 L70 94 L78 100 Z" fill="#FF3D9A"/>
+  <circle cx="70" cy="94" r="3" fill="#FFC531"/>
+  <!-- head -->
+  <circle cx="70" cy="58" r="30" fill="#F2FBFF"/>
+  <!-- top hat -->
+  <rect x="50" y="18" width="40" height="8" rx="2" fill="#0B1633"/>
+  <rect x="56" y="2" width="28" height="20" rx="2" fill="#0B1633"/>
+  <rect x="56" y="14" width="28" height="4" fill="#FF3D9A"/>
+  <!-- eyes -->
+  <circle cx="60" cy="54" r="3.5" fill="#0B1633"/>
+  <circle cx="80" cy="54" r="3.5" fill="#0B1633"/>
+  <!-- carrot nose -->
+  <path d="M70 60 L86 64 L70 68 Z" fill="#FF8A3D"/>
+  <!-- coal smile -->
+  <circle cx="58" cy="72" r="1.8" fill="#0B1633"/>
+  <circle cx="64" cy="76" r="1.8" fill="#0B1633"/>
+  <circle cx="71" cy="78" r="1.8" fill="#0B1633"/>
+  <circle cx="78" cy="76" r="1.8" fill="#0B1633"/>
+  <circle cx="83" cy="71" r="1.8" fill="#0B1633"/>
+  <!-- microphone -->
+  <rect x="94" y="88" width="5" height="30" rx="2" fill="#2A2A2A" transform="rotate(20 96 100)"/>
+  <circle cx="104" cy="86" r="7" fill="#2A2A2A"/>
+  <circle cx="104" cy="86" r="4.5" fill="#555"/>
+</svg>
