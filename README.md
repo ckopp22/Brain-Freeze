@@ -14,6 +14,8 @@ Open `http://localhost:8000/` (ES modules require a server, not `file://`).
 
 ## Status
 
-Phase 1 complete: repo scaffold, 500-prompt deck, theme, splash, main menu, how-to-play, player setup.
+Complete: full game loop, scoring, scoreboard, WebAudio sound effects, and installable PWA (manifest + service worker).
 
-Live URL: TBD after GitHub Pages deploy.
+Live URL: https://ckopp22.github.io/Brain-Freeze/
+
+Each future update is just `git push` (no build step). Bump the cache name in `service-worker.js` on every release so installed copies update.
