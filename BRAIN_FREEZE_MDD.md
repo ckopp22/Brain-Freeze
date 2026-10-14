@@ -10,7 +10,7 @@
 
 ## 1. Concept
 
-Brain Freeze is a pass-the-device game show for 1–8 players. Each turn a player gets one card with a simple, everyday prompt, the kind of thing everyone feels like they should know ("Is starboard left or right?", "How long did Sleeping Beauty sleep?", "Name 5 capital cities"). A countdown timer runs. The player answers out loud, the answer is revealed, and the group (or the player, in solo mode) taps **NAILED IT** or **FROZE**. Nailed it = **+100 points**.
+Brain Freeze is a pass-the-device game show for 1–8 players. Each turn a player gets one card with a simple, everyday prompt, the kind of thing everyone feels like they should know ("Is starboard left or right?", "How long did Sleeping Beauty sleep?", "Name 5 countries in Africa"). A countdown timer runs. The player answers out loud, the answer is revealed, and the group (or the player, in solo mode) taps **NAILED IT** or **FROZE**. Nailed it = **+100 points**.
 
 First player to **1,000 points (10 correct cards)** wins the game.
 
@@ -153,7 +153,7 @@ Fields (all on one screen, stacked "control panel" cards):
 
   Goal: on Medium, the typical table gets about half right and struggles with the rest.
 - **Category variety:** avoid drawing the same category twice in a row (soft rule, relaxed if the pool is exhausted).
-- **Answer judging:** all prompts are free-response and judged by the group. Each card stores a canonical answer and, where needed, a note about what counts (e.g., "Any 5 valid capitals"). "Name N" cards require N valid items.
+- **Answer judging:** all prompts are free-response and judged by the group. Each card stores a canonical answer and, where needed, a note about what counts (e.g., "Any 5 valid countries"). "Name N" cards require N valid items.
 
 ### 5.1 Categories (50 prompts each)
 | Code | Category | Badge |
@@ -405,28 +405,28 @@ LAN-050 | M | Name the days of the week that start with the letter "T." | Tuesda
 GEO-001 | E | How many continents are there? | 7
 GEO-002 | E | Name the 7 continents. | Asia, Africa, North America, South America, Antarctica, Europe, Australia/Oceania
 GEO-003 | E | How many oceans are there? | 5 (Pacific, Atlantic, Indian, Southern, Arctic)
-GEO-004 | M | Name 5 US state capitals. | Any 5 valid (e.g., Austin, Denver, Boston, Albany, Sacramento)
-GEO-005 | E | What is the capital of the United States? | Washington, D.C.
-GEO-006 | E | What is the capital of France? | Paris
-GEO-007 | E | What is the capital of the United Kingdom? | London
-GEO-008 | M | What is the capital of Italy? | Rome
-GEO-009 | M | What is the capital of Spain? | Madrid
-GEO-010 | M | What is the capital of Germany? | Berlin
-GEO-011 | M | What is the capital of Japan? | Tokyo
-GEO-012 | M | What is the capital of Canada? | Ottawa
-GEO-013 | H | What is the capital of Australia? | Canberra
-GEO-014 | H | What is the capital of Brazil? | Brasília
-GEO-015 | M | What is the capital of Egypt? | Cairo
-GEO-016 | M | What is the capital of Mexico? | Mexico City
-GEO-017 | M | What is the capital of China? | Beijing
-GEO-018 | H | What is the capital of Turkey? | Ankara
-GEO-019 | H | What is the capital of New Zealand? | Wellington
-GEO-020 | M | What is the capital of California? | Sacramento
-GEO-021 | E | What is the capital of Texas? | Austin
-GEO-022 | M | What is the capital of Florida? | Tallahassee
-GEO-023 | M | What is the capital of New York State? | Albany
-GEO-024 | H | What is the capital of Illinois? | Springfield
-GEO-025 | H | What is the capital of Washington State? | Olympia
+GEO-004 | M | Which US city is nicknamed the Windy City? | Chicago
+GEO-005 | E | In which direction does the sun set? | West
+GEO-006 | E | Which country lies directly south of the United States? | Mexico
+GEO-007 | E | Which country is the Colosseum in? | Italy
+GEO-008 | M | Which US state is the Grand Canyon in? | Arizona
+GEO-009 | M | Which river runs through Paris? | The Seine
+GEO-010 | M | Which river runs through London? | The Thames
+GEO-011 | M | Which sea lies between Europe and Africa? | The Mediterranean Sea
+GEO-012 | M | Which country is shaped like a boot? | Italy
+GEO-013 | H | Which Great Lake is entirely within the United States? | Lake Michigan
+GEO-014 | H | What is the largest island in the world? | Greenland
+GEO-015 | M | Which country is the Taj Mahal in? | India
+GEO-016 | M | Which two oceans does the Panama Canal connect? | Atlantic and Pacific
+GEO-017 | M | Which country is the city of Sydney in? | Australia
+GEO-018 | H | Which mountain range runs along the western edge of South America? | The Andes
+GEO-019 | H | What is the tallest mountain in North America? | Denali (Mount McKinley)
+GEO-020 | M | Which country has a maple leaf on its flag? | Canada
+GEO-021 | E | Which US state is made up of islands in the Pacific Ocean? | Hawaii
+GEO-022 | M | Which US state is nicknamed the Lone Star State? | Texas
+GEO-023 | M | Which two US states are not connected to the other 48? | Alaska and Hawaii
+GEO-024 | H | Which is larger by area: Canada or the United States? | Canada
+GEO-025 | H | Which sea is the lowest point on land, bordering Israel and Jordan? | The Dead Sea
 GEO-026 | E | What is the largest US state by area? | Alaska
 GEO-027 | M | What is the smallest US state by area? | Rhode Island
 GEO-028 | E | How many US states are there? | 50
