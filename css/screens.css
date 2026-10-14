@@ -17,6 +17,30 @@
   gap: 8px;
 }
 
+.menu-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.topbar-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1.5vw, 8px);
+}
+
+.topbar-btn {
+  width: clamp(34px, min(9vw, 12dvh), 48px);
+}
+
+.btn-install {
+  width: clamp(92px, min(27vw, 36dvh), 128px);
+  font-size: clamp(11px, 3.1vw, 14px);
+  padding: 0 4%;
+}
+
 .spotlight-sweep {
   position: absolute;
   top: 0;
@@ -56,7 +80,7 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  margin-top: 2px;
+  margin-block: auto;
 }
 
 .menu-buttons .sui-btn {
@@ -327,8 +351,18 @@
 
 .hud-top {
   display: grid;
-  grid-template-columns: 44px 1fr 44px;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
+}
+
+.hud-top-left {
+  display: flex;
+  gap: 6px;
+  justify-self: start;
+}
+
+.hud-top > #btn-pause {
+  justify-self: end;
 }
 
 .hud-round-btn {
@@ -874,12 +908,13 @@
   #screen-menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "logo nav" "tag nav" "host nav" "ios nav" "foot foot";
-    grid-template-rows: auto auto auto auto 1fr;
+    grid-template-areas: "bar bar" "logo nav" "tag nav" "host nav" "ios nav" "foot foot";
+    grid-template-rows: auto auto auto auto auto 1fr;
     align-content: center;
     column-gap: 18px;
   }
 
+  #screen-menu .menu-topbar { grid-area: bar; }
   #screen-menu .logo-heading { grid-area: logo; }
   #screen-menu .marquee-tagline { grid-area: tag; }
   #screen-menu .host-stage { grid-area: host; }
@@ -939,7 +974,8 @@
   #screen-game .hud-bar { grid-column: 1; grid-row: 1; min-height: 0; }
   #screen-game .turn-intro,
   #screen-game .card-stage { grid-column: 2; grid-row: 1; }
-  #screen-game .hud-top { grid-template-columns: 36px 1fr 36px; }
+  #screen-game .hud-top { grid-template-columns: 1fr auto; row-gap: 2px; }
+  #screen-game .hud-top .hud-round { grid-column: 1 / -1; grid-row: 2; font-size: 0.85rem; }
   #screen-game .hud-round-btn { width: 36px; }
   #screen-game .hud-strip { flex-direction: column; flex: 1; min-height: 0; overflow-x: hidden; overflow-y: auto; }
   #screen-game .hud-chip { flex: 0 0 auto; width: 100%; }

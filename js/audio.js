@@ -1,6 +1,11 @@
 import { loadSettings, saveSettings } from "./state.js";
 
+const MUSIC_SRC = "./assets/audio/brain-freeze-music.m4a";
+const MUSIC_VOLUME = 0.15;
+
 let soundOn = loadSettings().sound;
+let musicOn = loadSettings().music !== false;
+let musicEl = null;
 let ctx = null;
 let noiseBuffer = null;
 
@@ -20,7 +25,39 @@ export function toggleSound() {
   return soundOn;
 }
 
+export function isMusicOn() {
+  return musicOn;
+}
+
+export function toggleMusic() {
+  musicOn = !musicOn;
+  const settings = loadSettings();
+  settings.music = musicOn;
+  saveSettings(settings);
+  if (musicOn) startMusic();
+  else if (musicEl) musicEl.pause();
+  return musicOn;
+}
+
+export function startMusic() {
+  if (!musicOn) return;
+  if (!musicEl) {
+    musicEl = new Audio(MUSIC_SRC);
+    musicEl.loop = true;
+    musicEl.volume = MUSIC_VOLUME;
+    musicEl.preload = "auto";
+  }
+  musicEl.play().catch(() => {});
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (!musicEl) return;
+  if (document.hidden) musicEl.pause();
+  else if (musicOn) musicEl.play().catch(() => {});
+});
+
 export function unlockAudio() {
+  startMusic();
   if (!ctx) {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     if (!AudioCtx) return;

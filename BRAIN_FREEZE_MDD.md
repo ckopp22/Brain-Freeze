@@ -199,7 +199,7 @@ Claude Code should parse **Appendix A** (lines of the form `ID | D | Prompt | An
   - **Brain Freeze** (timer shatter: filtered noise burst + glass-ice tinkle)
   - Win fanfare (game show style stinger)
   - Turn change (swoosh)
-- Optional light looping background music (simple synthesized game show groove) that is OFF unless added later; keep out of v1 to avoid annoyance.
+- Background music: `assets/audio/brain-freeze-music.m4a` loops quietly (15% volume), starts on the first tap, pauses when the tab is hidden, and has its own on/off toggle (`music` in settings) next to the sound toggle on the menu and in the game HUD.
 - All sound calls go through one `audio.js` module that checks the toggle.
 - Vibration (`navigator.vibrate`) on FROZE/Brain Freeze where supported, also gated by the sound toggle.
 

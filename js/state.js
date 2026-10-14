@@ -27,6 +27,7 @@ function remove(key) {
 
 const DEFAULT_SETTINGS = {
   sound: true,
+  music: true,
   players: 2,
   difficulty: "M",
   timer: 30,

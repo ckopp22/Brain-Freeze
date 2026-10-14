@@ -2,7 +2,7 @@ import { showScreen } from "./router.js";
 import * as Game from "./game.js";
 import * as UI from "./ui.js";
 import { loadGame } from "./state.js";
-import { play, isSoundOn, toggleSound } from "./audio.js";
+import { play, isSoundOn, toggleSound, isMusicOn, toggleMusic } from "./audio.js";
 import { hostLine, setHostPose } from "./host.js";
 import { AVATAR_SRCS } from "./avatars.js";
 
@@ -58,6 +58,8 @@ const el = {
   frostOverlay: document.getElementById("frost-overlay"),
   btnGameSound: document.getElementById("btn-game-sound"),
   gameSoundIco: document.getElementById("game-sound-ico"),
+  btnGameMusic: document.getElementById("btn-game-music"),
+  gameMusicIco: document.getElementById("game-music-ico"),
   winnerHost: document.getElementById("winner-host"),
 };
 
@@ -78,6 +80,7 @@ function hideHostReaction() {
 
 function syncGameSoundIcon() {
   el.gameSoundIco.src = `./assets/ui/icons/icon-sound-${isSoundOn() ? "on" : "off"}.svg`;
+  el.gameMusicIco.src = `./assets/ui/icons/icon-music-${isMusicOn() ? "on" : "off"}.svg`;
 }
 
 function announce(text) {
@@ -394,6 +397,12 @@ function unpauseGame() {
 
 el.btnGameSound.addEventListener("click", () => {
   toggleSound();
+  play("tap");
+  syncGameSoundIcon();
+});
+
+el.btnGameMusic.addEventListener("click", () => {
+  toggleMusic();
   play("tap");
   syncGameSoundIcon();
 });

@@ -1,6 +1,6 @@
 import { loadSettings, saveSettings, loadGame } from "./state.js";
 import { randomMenuLine, randomMenuPose, setHostPose } from "./host.js";
-import { isSoundOn, toggleSound, unlockAudio, play } from "./audio.js";
+import { isSoundOn, toggleSound, isMusicOn, toggleMusic, unlockAudio, play } from "./audio.js";
 import { AVATAR_SRCS } from "./avatars.js";
 import { showScreen, getScreen } from "./router.js";
 import * as GameFlow from "./gameflow.js";
@@ -59,12 +59,17 @@ function setSegActive(groupId, activeBtn) {
 }
 
 function refreshSoundButton() {
-  const btn = document.getElementById("btn-sound");
-  const label = btn.querySelector(".btn-sound-label");
   const on = isSoundOn();
+  const btn = document.getElementById("btn-sound");
   btn.setAttribute("aria-pressed", String(on));
-  label.textContent = on ? "SOUND: ON" : "SOUND: OFF";
+  btn.setAttribute("aria-label", on ? "Sound on" : "Sound off");
   document.getElementById("menu-sound-ico").src = `./assets/ui/icons/icon-sound-${on ? "on" : "off"}.svg`;
+
+  const musicOn = isMusicOn();
+  const mbtn = document.getElementById("btn-music");
+  mbtn.setAttribute("aria-pressed", String(musicOn));
+  mbtn.setAttribute("aria-label", musicOn ? "Music on" : "Music off");
+  document.getElementById("menu-music-ico").src = `./assets/ui/icons/icon-music-${musicOn ? "on" : "off"}.svg`;
 }
 
 function wireMenu() {
@@ -79,6 +84,11 @@ function wireMenu() {
   });
   document.getElementById("btn-sound").addEventListener("click", () => {
     toggleSound();
+    play("tap");
+    refreshSoundButton();
+  });
+  document.getElementById("btn-music").addEventListener("click", () => {
+    toggleMusic();
     play("tap");
     refreshSoundButton();
   });
@@ -224,6 +234,9 @@ function wireSetupForm() {
     if (!validateSetupForm()) return;
     play("tap");
     settings.names = settings.names.map((n, i) => n.trim() || `Player ${i + 1}`);
+    const latest = loadSettings();
+    settings.sound = latest.sound;
+    settings.music = latest.music;
     saveSettings(settings);
     GameFlow.startNewGame(settings);
   });

@@ -31,6 +31,13 @@
   </section>
 
   <section id="screen-menu" class="screen" hidden aria-label="Main Menu">
+    <div class="menu-topbar">
+      <div class="topbar-group">
+        <button id="btn-sound" class="sui-round sui-round--ice topbar-btn" aria-pressed="true" aria-label="Sound on"><img id="menu-sound-ico" src="./assets/ui/icons/icon-sound-on.svg" alt="" /></button>
+        <button id="btn-music" class="sui-round sui-round--ice topbar-btn" aria-pressed="true" aria-label="Music on"><img id="menu-music-ico" src="./assets/ui/icons/icon-music-on.svg" alt="" /></button>
+      </div>
+      <button id="btn-install" class="sui-btn sui-btn--ice btn-install" hidden>INSTALL</button>
+    </div>
     <div class="spotlight-sweep" aria-hidden="true"></div>
     <h1 class="logo-heading">
       <img class="logo" src="./assets/ui/frames/logo-brain-freeze.svg" alt="Brain Freeze" width="480" height="230" />
@@ -46,10 +53,6 @@
       <button id="btn-resume" class="sui-btn sui-btn--gold" hidden>RESUME GAME</button>
       <button id="btn-play" class="sui-btn sui-btn--gold btn-pulse"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-play.svg" alt="" />PLAY</span></button>
       <button id="btn-howto" class="sui-btn sui-btn--ice"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-help.svg" alt="" />HOW TO PLAY</span></button>
-      <button id="btn-sound" class="sui-btn sui-btn--magenta" aria-pressed="true">
-        <span class="sui-label"><img id="menu-sound-ico" class="sui-ico" src="./assets/ui/icons/icon-sound-on.svg" alt="" /><span class="btn-sound-label">SOUND: ON</span></span>
-      </button>
-      <button id="btn-install" class="sui-btn sui-btn--ice" hidden>INSTALL APP</button>
     </nav>
     <p id="ios-install-hint" class="ios-install-hint" hidden>Tap <strong>Share</strong> → <strong>Add to Home Screen</strong> to install.</p>
 
@@ -122,7 +125,10 @@
   <section id="screen-game" class="screen screen-game" hidden aria-label="Game">
     <header class="hud-bar">
       <div class="hud-top">
-        <button id="btn-game-sound" class="sui-round sui-round--ice hud-round-btn" aria-label="Toggle sound"><img id="game-sound-ico" src="./assets/ui/icons/icon-sound-on.svg" alt="" /></button>
+        <div class="hud-top-left">
+          <button id="btn-game-sound" class="sui-round sui-round--ice hud-round-btn" aria-label="Toggle sound"><img id="game-sound-ico" src="./assets/ui/icons/icon-sound-on.svg" alt="" /></button>
+          <button id="btn-game-music" class="sui-round sui-round--ice hud-round-btn" aria-label="Toggle music"><img id="game-music-ico" src="./assets/ui/icons/icon-music-on.svg" alt="" /></button>
+        </div>
         <div id="hud-round" class="hud-round">Round 1</div>
         <button id="btn-pause" class="sui-round sui-round--ice hud-round-btn" aria-label="Pause"><img src="./assets/ui/icons/icon-pause.svg" alt="" /></button>
       </div>
