@@ -275,9 +275,19 @@
   padding-top: 0;
 }
 
-@media (max-height: 720px) {
+@media (max-height: 760px) {
   #screen-setup .marquee-small {
-    display: none;
+    width: 150px;
+  }
+}
+
+@media (max-height: 680px) {
+  #screen-setup .marquee-small {
+    width: 120px;
+  }
+
+  #screen-setup .marquee-title-small {
+    font-size: 0.75rem;
   }
 }
 
@@ -830,4 +840,19 @@
 .scoreboard-actions {
   flex-shrink: 0;
   max-width: 360px;
+}
+
+@media (max-height: 640px) {
+  #screen-setup .seg-btn {
+    height: 38px;
+  }
+
+  #screen-setup .player-name-input {
+    min-height: 34px;
+  }
+
+  #screen-setup .player-avatar-icon {
+    width: 26px;
+    height: 26px;
+  }
 }
