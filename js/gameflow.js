@@ -2,7 +2,9 @@ import { showScreen } from "./router.js";
 import * as Game from "./game.js";
 import * as UI from "./ui.js";
 import { loadGame } from "./state.js";
-import { play } from "./audio.js";
+import { play, isSoundOn, toggleSound } from "./audio.js";
+import { hostLine, setHostPose } from "./host.js";
+import { AVATAR_SRCS } from "./avatars.js";
 
 let game = null;
 let tickHandle = null;
@@ -48,7 +50,35 @@ const el = {
   btnPlayAgain: document.getElementById("btn-play-again"),
   btnScoreboardMenu: document.getElementById("btn-scoreboard-menu"),
   announcer: document.getElementById("aria-announcer"),
+  introHost: document.getElementById("intro-host"),
+  introBubble: document.getElementById("intro-bubble"),
+  hostReact: document.getElementById("host-react"),
+  hostReactImg: document.getElementById("host-react-img"),
+  hostReactLine: document.getElementById("host-react-line"),
+  frostOverlay: document.getElementById("frost-overlay"),
+  btnGameSound: document.getElementById("btn-game-sound"),
+  gameSoundIco: document.getElementById("game-sound-ico"),
+  winnerHost: document.getElementById("winner-host"),
 };
+
+let hostReactTimer = null;
+
+function showHostReaction(pose, text, ms = 1300) {
+  setHostPose(el.hostReactImg, pose);
+  el.hostReactLine.textContent = text;
+  el.hostReact.hidden = false;
+  clearTimeout(hostReactTimer);
+  hostReactTimer = setTimeout(hideHostReaction, ms);
+}
+
+function hideHostReaction() {
+  clearTimeout(hostReactTimer);
+  el.hostReact.hidden = true;
+}
+
+function syncGameSoundIcon() {
+  el.gameSoundIco.src = `./assets/ui/icons/icon-sound-${isSoundOn() ? "on" : "off"}.svg`;
+}
 
 function announce(text) {
   el.announcer.textContent = text;
@@ -63,6 +93,9 @@ export function resumeGame() {
   const saved = loadGame();
   if (!saved) return;
   game = saved;
+  game.players.forEach((p, i) => {
+    if (!String(p.avatar).startsWith("./")) p.avatar = AVATAR_SRCS[i % AVATAR_SRCS.length];
+  });
   Game.resumeDeckContext(game);
   showScreen("game");
   renderHud();
@@ -104,6 +137,7 @@ function enterTurnPhase() {
   const soloMode = game.players.length === 1;
 
   resetCardVisuals();
+  syncGameSoundIcon();
   announce(`${player.name}'s turn.`);
 
   if (soloMode || game.current.phase !== "intro") {
@@ -114,6 +148,8 @@ function enterTurnPhase() {
   el.turnIntro.hidden = false;
   el.cardStage.hidden = true;
   el.turnIntroName.textContent = player.name;
+  el.introBubble.textContent = hostLine("turn", player.name);
+  setHostPose(el.introHost, "point");
 }
 
 el.btnReady.addEventListener("click", () => {
@@ -149,15 +185,17 @@ function renderCardFront(card) {
     return;
   }
   el.cardBadge.textContent = UI.categoryBadge(card.cat);
-  el.cardSnow.textContent = UI.difficultySnowflakes(card.diff);
+  UI.renderSnowflakes(el.cardSnow, card.diff);
   el.cardPrompt.textContent = card.q;
   el.cardAnswer.textContent = card.a;
+  el.cardAnswer.classList.toggle("is-long", card.a.length > 60);
   el.cardAnswerNote.hidden = true;
 }
 
 function resetCardVisuals() {
   el.gameCard.classList.remove("is-flipped");
-  el.cardStage.classList.remove("is-frozen");
+  el.frostOverlay.classList.remove("is-on");
+  hideHostReaction();
   el.brainFreezeStamp.hidden = true;
   el.brainFreezeStamp.classList.remove("is-active");
   el.judgeActions.hidden = true;
@@ -229,38 +267,48 @@ function flipToAnswer() {
   Game.flipCard(game);
   el.gameCard.classList.add("is-flipped");
   el.btnFlip.hidden = true;
+  el.btnThaw.hidden = true;
   el.judgeActions.hidden = false;
 }
 
 function onTimeout() {
+  const player = Game.currentPlayer(game);
   Game.flipCard(game);
   el.gameCard.classList.add("is-flipped");
-  el.cardStage.classList.add("is-frozen");
+  el.frostOverlay.classList.add("is-on");
   el.brainFreezeStamp.hidden = false;
   el.brainFreezeStamp.classList.add("is-active");
   el.btnFlip.hidden = true;
+  el.btnThaw.hidden = true;
   el.judgeActions.hidden = true;
   play("brainFreeze");
   announce("Brain freeze! Time's up.");
+  showHostReaction("shock", hostLine("timeout", player.name), 2300);
   Game.timeoutFreeze(game);
-  setTimeout(() => finishJudging(), 1400);
+  setTimeout(() => finishJudging(900), 1400);
 }
 
 el.btnNailed.addEventListener("click", () => {
   play("nailedIt");
   announce("Nailed it! Plus 100 points.");
+  el.judgeActions.hidden = true;
   Game.judge(game, true);
-  finishJudging();
+  const player = Game.currentPlayer(game);
+  const nearWin = player.score === 900;
+  showHostReaction("cheer", hostLine(nearWin ? "nearWin" : "nailed", player.name));
+  finishJudging(1300);
 });
 
 el.btnFroze.addEventListener("click", () => {
   play("froze");
   announce("Froze. No points.");
+  el.judgeActions.hidden = true;
   Game.judge(game, false);
-  finishJudging();
+  showHostReaction("think", hostLine("froze", Game.currentPlayer(game).name));
+  finishJudging(1300);
 });
 
-function finishJudging() {
+function finishJudging(nextTurnDelay) {
   const scoringIndex = Game.currentPlayerIndex(game);
   renderHud(scoringIndex);
 
@@ -271,7 +319,7 @@ function finishJudging() {
   }
 
   Game.advanceTurn(game);
-  setTimeout(beginTurn, 900);
+  setTimeout(beginTurn, nextTurnDelay);
 }
 
 function endGame(winner) {
@@ -283,6 +331,8 @@ function endGame(winner) {
 
 function renderScoreboard(winner) {
   el.winnerName.textContent = `${winner.name} Wins Brain Freeze!`;
+  setHostPose(el.winnerHost, "cheer");
+  announce(hostLine("winner", winner.name));
   UI.spawnConfetti(document.getElementById("screen-scoreboard"), 40);
 
   const ranked = [...game.players].sort((a, b) => b.score - a.score);
@@ -292,7 +342,7 @@ function renderScoreboard(winner) {
     row.className = "scoreboard-row";
     row.innerHTML = `
       <span class="scoreboard-rank">#${i + 1}</span>
-      <span class="scoreboard-avatar">${p.avatar}</span>
+      <img class="scoreboard-avatar" src="${p.avatar}" alt="" />
       <span class="scoreboard-info">
         <span class="scoreboard-info-name">${escapeHtml(p.name)}</span>
         <span class="scoreboard-info-sub">${p.correct}/${p.played} correct &middot; best streak ${p.bestStreak}</span>
@@ -341,6 +391,12 @@ function unpauseGame() {
   }
   pausedAt = null;
 }
+
+el.btnGameSound.addEventListener("click", () => {
+  toggleSound();
+  play("tap");
+  syncGameSoundIcon();
+});
 
 el.btnPause.addEventListener("click", () => {
   play("tap");

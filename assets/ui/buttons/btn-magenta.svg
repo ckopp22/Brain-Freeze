@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 108" width="320" height="108">
+  <title>magenta button</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF9AD0"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient>
+  </defs>
+  <rect x="4" y="22" width="312" height="80" rx="40" fill="#C92A7C" stroke="#8E1A5A" stroke-width="4"/>
+  <rect x="4" y="14" width="312" height="80" rx="40" fill="url(#g)" stroke="#8E1A5A" stroke-width="4"/>
+  <rect x="22" y="22" width="276" height="26" rx="13" fill="#fff" opacity=".30"/>
+  <g transform="translate(0 10)" fill="#FFFFFF" stroke="#BFE9FF" stroke-width="2" stroke-linejoin="round">
+    <path d="M40 10 C52 -4 70 -2 80 8 C92 -6 118 -4 126 6 C140 -6 170 -6 180 6 C194 -4 220 -4 232 8 C244 -2 262 0 280 10 C270 16 250 12 240 16 C230 14 200 18 190 14 C170 18 140 18 130 14 C110 18 90 14 80 16 C66 14 52 18 40 10 Z"/>
+    <path d="M96 14 v10 a4 4 0 0 0 8 0 v-10Z"/>
+    <path d="M206 14 v14 a4 4 0 0 0 8 0 v-14Z"/>
+  </g>
+</svg>

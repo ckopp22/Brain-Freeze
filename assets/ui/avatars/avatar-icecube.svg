@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+  <title>ice cube avatar</title>
+  <clipPath id="c"><circle cx="48" cy="48" r="44"/></clipPath>
+  <circle cx="48" cy="48" r="44" fill="#5ED8C6"/>
+  <g clip-path="url(#c)">
+    <rect x="22" y="24" width="52" height="52" rx="12" fill="#CFF3FF" fill-opacity=".92" stroke="#7FD8FF" stroke-width="3"/>
+    <path d="M30 34 Q30 30 35 30 H46" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+    <circle cx="39" cy="48" r="4" fill="#0B1633"/><circle cx="57" cy="48" r="4" fill="#0B1633"/><circle cx="40.5" cy="46.5" r="1.4" fill="#fff"/><circle cx="58.5" cy="46.5" r="1.4" fill="#fff"/>
+    <path d="M40 60 Q48 68 56 60" fill="none" stroke="#0B1633" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="32" cy="58" r="4.5" fill="#FF8FB8" opacity=".5"/><circle cx="64" cy="58" r="4.5" fill="#FF8FB8" opacity=".5"/>
+  </g>
+  <circle cx="48" cy="48" r="44" fill="none" stroke="#0B1633" stroke-width="4"/>
+  <circle cx="48" cy="48" r="41" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="2"/>
+</svg>

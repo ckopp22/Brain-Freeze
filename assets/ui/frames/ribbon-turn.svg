@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" width="360" height="80">
+  <title>turn ribbon: put the player name on top</title>
+  <defs>
+    <linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7FBF"/><stop offset="1" stop-color="#FF3D9A"/></linearGradient>
+  </defs>
+  <polygon points="2,26 40,26 40,66 2,66 18,46" fill="#C91F78" stroke="#8E1A5A" stroke-width="3" stroke-linejoin="round"/>
+  <polygon points="358,26 320,26 320,66 358,66 342,46" fill="#C91F78" stroke="#8E1A5A" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="24" y="12" width="312" height="52" rx="8" fill="url(#r)" stroke="#8E1A5A" stroke-width="4"/>
+  <rect x="32" y="18" width="296" height="12" rx="6" fill="#fff" opacity=".28"/>
+  <rect x="24" y="64" width="16" height="10" fill="#8E1A5A"/><rect x="320" y="64" width="16" height="10" fill="#8E1A5A"/>
+  <path d="M60 16 Q80.0 -10.0 100.0 16 Q120.0 -4.4 140.0 16 Q160.0 -10.0 180.0 16 Q200.0 -4.4 220.0 16 Q240.0 -10.0 260.0 16 Q280.0 -4.4 300.0 16 L300 20 L60 20 Z" fill="#fff" stroke="#BFE9FF" stroke-width="2"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 440" width="320" height="440">
+  <title>game show card (front, prompt side): header band for category</title>
+  <defs>
+<clipPath id="inner"><rect x="16" y="16" width="288" height="408" rx="20"/></clipPath>
+    <path id="sp" d="M0 -8 Q1 -1 8 0 Q1 1 0 8 Q-1 1 -8 0 Q-1 -1 0 -8Z" fill="#FFC531"/>
+  </defs>
+  <rect x="4" y="4" width="312" height="432" rx="28" fill="#FFF8E7" stroke="#FFC531" stroke-width="6"/>
+  <g clip-path="url(#inner)">
+    <rect x="16" y="16" width="288" height="68" fill="#FF3D9A"/>
+    <rect x="16" y="76" width="288" height="8" fill="#C91F78"/>
+    <g fill="#FFFFFF" opacity=".55"><use href="#sp" transform="translate(52 50)"/><use href="#sp" transform="translate(268 50)"/><use href="#sp" transform="translate(160 36) scale(.7)"/></g>
+    <path d="M10 408 Q35.0 368.0 60.0 408 Q85.0 379.2 110.0 408 Q135.0 368.0 160.0 408 Q185.0 379.2 210.0 408 Q235.0 368.0 260.0 408 Q285.0 379.2 310.0 408 L310 412 L10 412 Z" fill="#fff" stroke="#BFE9FF" stroke-width="2"/>
+    <rect x="10" y="412" width="300" height="20" fill="#fff"/>
+  </g>
+  <rect x="16" y="16" width="288" height="408" rx="20" fill="none" stroke="#0B1633" stroke-opacity=".35" stroke-width="2"/>
+  
+  <use href="#sp" transform="translate(30 30)" fill="#FFC531"/><use href="#sp" transform="translate(290 410)" fill="#FFC531"/>
+</svg>

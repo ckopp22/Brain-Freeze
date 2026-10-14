@@ -14,73 +14,70 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./assets/ui/tokens.css" />
 <link rel="stylesheet" href="./css/theme.css" />
 <link rel="stylesheet" href="./css/screens.css" />
 <link rel="stylesheet" href="./css/animations.css" />
 </head>
 <body>
-<div id="app" class="app-host">
+<div id="app" class="app-host sui-studio">
 
   <canvas id="frost-canvas" class="frost-canvas" aria-hidden="true"></canvas>
+  <div id="frost-overlay" class="frost-overlay" aria-hidden="true"></div>
 
   <section id="screen-splash" class="screen screen-splash" aria-label="Loading">
-    <div class="marquee-frame marquee-bulbs">
-      <h1 class="marquee-title">BRAIN FREEZE</h1>
-    </div>
+    <img class="logo logo-drop" src="./assets/ui/frames/logo-brain-freeze.svg" alt="Brain Freeze" width="480" height="230" />
     <p class="splash-tap-hint">Tap to begin</p>
   </section>
 
   <section id="screen-menu" class="screen" hidden aria-label="Main Menu">
     <div class="spotlight-sweep" aria-hidden="true"></div>
-    <div class="marquee-frame marquee-bulbs">
-      <h1 class="marquee-title">BRAIN FREEZE</h1>
-      <p class="marquee-tagline">Things you <em>should</em> know&hellip; but your brain just froze.</p>
-    </div>
+    <h1 class="logo-heading">
+      <img class="logo" src="./assets/ui/frames/logo-brain-freeze.svg" alt="Brain Freeze" width="480" height="230" />
+    </h1>
+    <p class="marquee-tagline">Things you <em>should</em> know&hellip; but your brain just froze.</p>
 
     <div class="host-stage">
-      <img src="./assets/host.svg" alt="Chilly Chuck, the game show host" class="host-podium" width="140" height="160" />
-      <p id="host-line" class="host-speech-bubble" aria-live="polite">Welcome to the coolest show on ice!</p>
+      <img id="host-img" class="host-sprite" src="./assets/ui/host/host-idle.png" alt="Chilly Chuck, the game show host" width="133" height="130" />
+      <p id="host-line" class="host-speech-bubble tail-left" aria-live="polite">Welcome to the coolest show on ice!</p>
     </div>
 
     <nav class="menu-buttons">
-      <button id="btn-resume" class="btn btn-buzzer btn-gold" hidden>RESUME GAME</button>
-      <button id="btn-play" class="btn btn-buzzer btn-gold btn-pulse">PLAY</button>
-      <button id="btn-howto" class="btn btn-buzzer btn-ice">HOW TO PLAY</button>
-      <button id="btn-sound" class="btn btn-buzzer btn-ghost" aria-pressed="true">
-        <span class="btn-sound-icon" aria-hidden="true">🔊❄️</span>
-        <span class="btn-sound-label">SOUND: ON</span>
+      <button id="btn-resume" class="sui-btn sui-btn--gold" hidden>RESUME GAME</button>
+      <button id="btn-play" class="sui-btn sui-btn--gold btn-pulse"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-play.svg" alt="" />PLAY</span></button>
+      <button id="btn-howto" class="sui-btn sui-btn--ice"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-help.svg" alt="" />HOW TO PLAY</span></button>
+      <button id="btn-sound" class="sui-btn sui-btn--magenta" aria-pressed="true">
+        <span class="sui-label"><img id="menu-sound-ico" class="sui-ico" src="./assets/ui/icons/icon-sound-on.svg" alt="" /><span class="btn-sound-label">SOUND: ON</span></span>
       </button>
-      <button id="btn-install" class="btn btn-buzzer btn-ghost" hidden>INSTALL APP</button>
+      <button id="btn-install" class="sui-btn sui-btn--ice" hidden>INSTALL APP</button>
     </nav>
     <p id="ios-install-hint" class="ios-install-hint" hidden>Tap <strong>Share</strong> → <strong>Add to Home Screen</strong> to install.</p>
 
     <footer class="menu-footer">
-      <span>v1.0.0</span>
+      <span>v1.1.0</span>
       <span>Made with Claude Code</span>
     </footer>
-
-    <div class="studio-floor" aria-hidden="true"></div>
   </section>
 
   <section id="screen-howto" class="screen" hidden aria-label="How To Play">
-    <div class="marquee-frame marquee-bulbs marquee-small">
+    <div class="marquee-frame marquee-small">
       <h1 class="marquee-title-small">HOW TO PLAY</h1>
     </div>
     <div class="rules-card">
       <ol class="rules-list">
-        <li class="rule-step"><span class="rule-icon" aria-hidden="true">🎛️</span><span>Pick your players and settings.</span></li>
-        <li class="rule-step"><span class="rule-icon" aria-hidden="true">📱</span><span>Pass the device. Each player gets one card per turn.</span></li>
-        <li class="rule-step"><span class="rule-icon" aria-hidden="true">⏱️</span><span>Beat the clock by answering out loud.</span></li>
-        <li class="rule-step"><span class="rule-icon" aria-hidden="true">🔄</span><span>Flip the card. The group decides: <strong>NAILED IT</strong> (+100) or <strong>FROZE</strong> (0).</span></li>
-        <li class="rule-step"><span class="rule-icon" aria-hidden="true">🏆</span><span>First to <strong>1,000 points</strong> (10 cards) wins!</span></li>
+        <li class="rule-step"><img class="rule-icon" src="./assets/ui/icons/icon-player.svg" alt="" /><span>Pick your players and settings.</span></li>
+        <li class="rule-step"><img class="rule-icon" src="./assets/ui/icons/icon-play.svg" alt="" /><span>Pass the device. Each player gets one card per turn.</span></li>
+        <li class="rule-step"><img class="rule-icon" src="./assets/ui/icons/icon-clock.svg" alt="" /><span>Beat the clock by answering out loud.</span></li>
+        <li class="rule-step"><img class="rule-icon" src="./assets/ui/icons/icon-replay.svg" alt="" /><span>Flip the card. The group decides: <strong>NAILED IT</strong> (+100) or <strong>FROZE</strong> (0).</span></li>
+        <li class="rule-step"><img class="rule-icon" src="./assets/ui/icons/icon-trophy.svg" alt="" /><span>First to <strong>1,000 points</strong> (10 cards) wins!</span></li>
       </ol>
-      <p class="rules-note">💬 "Name 5&hellip;" cards: you need all of them to count, unless the card says otherwise.</p>
+      <p class="rules-note"><img class="rule-icon rule-icon-sm" src="./assets/ui/icons/icon-help.svg" alt="" />"Name 5&hellip;" cards: you need all of them to count, unless the card says otherwise.</p>
     </div>
-    <button id="btn-howto-back" class="btn btn-buzzer btn-gold">GOT IT!</button>
+    <button id="btn-howto-back" class="sui-btn sui-btn--gold">GOT IT!</button>
   </section>
 
   <section id="screen-setup" class="screen" hidden aria-label="Player Setup">
-    <div class="marquee-frame marquee-bulbs marquee-small">
+    <div class="marquee-frame marquee-small">
       <h1 class="marquee-title-small">PLAYER SETUP</h1>
     </div>
 
@@ -88,9 +85,9 @@
       <div class="control-card">
         <h2 class="control-label">Players</h2>
         <div class="stepper">
-          <button id="player-dec" class="stepper-btn" aria-label="Fewer players">&minus;</button>
+          <button id="player-dec" class="sui-round sui-round--ice stepper-btn" aria-label="Fewer players"><img src="./assets/ui/icons/icon-minus.svg" alt="" /></button>
           <span id="player-count" class="stepper-value">2</span>
-          <button id="player-inc" class="stepper-btn" aria-label="More players">&plus;</button>
+          <button id="player-inc" class="sui-round sui-round--ice stepper-btn" aria-label="More players"><img src="./assets/ui/icons/icon-plus.svg" alt="" /></button>
         </div>
         <div id="player-names" class="player-names"></div>
       </div>
@@ -98,89 +95,103 @@
       <div class="control-card">
         <h2 class="control-label">Difficulty</h2>
         <div id="difficulty-seg" class="segmented" role="group" aria-label="Difficulty">
-          <button class="seg-btn" data-value="E">Easy</button>
-          <button class="seg-btn is-active" data-value="M">Medium</button>
-          <button class="seg-btn" data-value="H">Hard</button>
+          <button class="seg-btn" data-value="E" aria-pressed="false">Easy</button>
+          <button class="seg-btn is-active" data-value="M" aria-pressed="true">Medium</button>
+          <button class="seg-btn" data-value="H" aria-pressed="false">Hard</button>
         </div>
       </div>
 
       <div class="control-card">
         <h2 class="control-label">Timer Duration</h2>
-        <div id="timer-seg" class="segmented segmented-wrap" role="group" aria-label="Timer duration">
-          <button class="seg-btn" data-value="15">15s</button>
-          <button class="seg-btn is-active" data-value="30">30s</button>
-          <button class="seg-btn" data-value="45">45s</button>
-          <button class="seg-btn" data-value="60">60s</button>
-          <button class="seg-btn" data-value="0">No Timer</button>
+        <div id="timer-seg" class="segmented" role="group" aria-label="Timer duration">
+          <button class="seg-btn" data-value="15" aria-pressed="false">15s</button>
+          <button class="seg-btn is-active" data-value="30" aria-pressed="true">30s</button>
+          <button class="seg-btn" data-value="45" aria-pressed="false">45s</button>
+          <button class="seg-btn" data-value="60" aria-pressed="false">60s</button>
+          <button class="seg-btn" data-value="0" aria-pressed="false">No Timer</button>
         </div>
       </div>
     </div>
 
-    <div class="setup-actions">
-      <button id="btn-setup-back" class="btn btn-buzzer btn-ghost">BACK</button>
-      <button id="btn-setup-play" class="btn btn-buzzer btn-gold">PLAY</button>
+    <div class="btn-row setup-actions">
+      <button id="btn-setup-back" class="sui-btn sui-btn--magenta">BACK</button>
+      <button id="btn-setup-play" class="sui-btn sui-btn--gold">PLAY</button>
     </div>
   </section>
 
   <section id="screen-getready" class="screen screen-getready" hidden aria-label="Get Ready">
+    <img id="getready-host" class="host-sprite host-lg" src="./assets/ui/host/host-talk.png" alt="" />
     <div class="getready-count" id="getready-count">3</div>
     <p class="getready-caption">Chilly Chuck says: let's play!</p>
   </section>
 
   <section id="screen-game" class="screen screen-game" hidden aria-label="Game">
     <header class="hud-bar">
-      <div id="hud-round" class="hud-round">Round 1</div>
+      <div class="hud-top">
+        <button id="btn-game-sound" class="sui-round sui-round--ice hud-round-btn" aria-label="Toggle sound"><img id="game-sound-ico" src="./assets/ui/icons/icon-sound-on.svg" alt="" /></button>
+        <div id="hud-round" class="hud-round">Round 1</div>
+        <button id="btn-pause" class="sui-round sui-round--ice hud-round-btn" aria-label="Pause"><img src="./assets/ui/icons/icon-pause.svg" alt="" /></button>
+      </div>
       <div id="hud-strip" class="hud-strip"></div>
     </header>
 
     <div id="turn-intro" class="turn-intro">
-      <p id="turn-intro-text" class="turn-intro-text">PASS THE DEVICE TO<br><strong id="turn-intro-name">Player 1</strong></p>
-      <button id="btn-ready" class="btn btn-buzzer btn-gold">READY</button>
+      <img id="intro-host" class="host-sprite host-md" src="./assets/ui/host/host-point.png" alt="" />
+      <p id="intro-bubble" class="host-speech-bubble"></p>
+      <p id="turn-intro-text" class="turn-intro-text">PASS THE DEVICE TO</p>
+      <div class="ribbon"><span id="turn-intro-name" class="ribbon-name">Player 1</span></div>
+      <img class="intro-card" src="./assets/ui/frames/card-back.svg" alt="" />
+      <button id="btn-ready" class="sui-btn sui-btn--gold">READY</button>
     </div>
 
     <div id="card-stage" class="card-stage" hidden>
       <div class="timer-wrap" id="timer-wrap">
-        <svg id="timer-ring" class="timer-ring" viewBox="0 0 100 100" aria-hidden="true">
-          <circle class="timer-ring-bg" cx="50" cy="50" r="44"></circle>
-          <circle id="timer-ring-fg" class="timer-ring-fg" cx="50" cy="50" r="44"></circle>
+        <img class="timer-track" src="./assets/ui/frames/timer-ring-track.svg" alt="" />
+        <svg id="timer-ring" class="timer-ring" viewBox="0 0 200 200" aria-hidden="true">
+          <circle id="timer-ring-fg" class="timer-ring-fg" cx="100" cy="100" r="88" pathLength="100" transform="rotate(-90 100 100)"></circle>
         </svg>
         <span id="timer-seconds" class="timer-seconds">30</span>
-        <span id="timer-no-timer" class="timer-no-timer" hidden aria-hidden="true">❄️</span>
+        <span id="timer-no-timer" class="timer-no-timer" hidden aria-hidden="true"><img src="./assets/ui/icons/icon-snowflake.svg" alt="" /></span>
       </div>
 
       <div id="game-card" class="game-card">
         <div class="card-face card-face-front">
-          <span id="card-badge" class="card-badge">🗣️ LAN</span>
-          <span id="card-snow" class="card-snow">❄️</span>
+          <div class="card-head">
+            <span id="card-badge" class="card-badge">🗣️ LAN</span>
+            <span id="card-snow" class="card-snow"></span>
+          </div>
           <p id="card-prompt" class="card-prompt">Prompt goes here</p>
         </div>
         <div class="card-face card-face-back">
-          <span class="card-answer-label">ANSWER</span>
+          <div class="card-head"><span class="card-answer-label">ANSWER</span></div>
           <p id="card-answer" class="card-answer">Answer goes here</p>
           <p id="card-answer-note" class="card-answer-note" hidden></p>
         </div>
       </div>
 
-      <div id="brain-freeze-stamp" class="brain-freeze-stamp" hidden>BRAIN FREEZE!</div>
+      <img id="brain-freeze-stamp" class="brain-freeze-stamp" src="./assets/ui/frames/stamp-brain-freeze.svg" alt="Brain Freeze!" hidden />
 
-      <div class="card-actions">
-        <button id="btn-thaw" class="btn btn-buzzer btn-ghost btn-small">❄️ THAW</button>
-        <button id="btn-flip" class="btn btn-buzzer btn-ice">FLIP CARD</button>
+      <div class="btn-row card-actions">
+        <button id="btn-thaw" class="sui-btn sui-btn--magenta btn-thaw"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-thaw.svg" alt="" />THAW</span></button>
+        <button id="btn-flip" class="sui-btn sui-btn--ice btn-flip">FLIP CARD</button>
       </div>
 
-      <div id="judge-actions" class="judge-actions" hidden>
-        <button id="btn-froze" class="btn btn-buzzer btn-red">FROZE</button>
-        <button id="btn-nailed" class="btn btn-buzzer btn-green">NAILED IT! +100</button>
+      <div id="judge-actions" class="btn-row judge-actions" hidden>
+        <button id="btn-froze" class="sui-btn sui-btn--red" aria-label="Froze, no points"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-cross.svg" alt="" />FROZE</span></button>
+        <button id="btn-nailed" class="sui-btn sui-btn--green" aria-label="Nailed it, plus 100 points"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-check.svg" alt="" />NAILED IT! +100</span></button>
       </div>
     </div>
 
-    <button id="btn-pause" class="btn-pause" aria-label="Pause">⏸</button>
+    <div id="host-react" class="host-react" hidden aria-hidden="true">
+      <img id="host-react-img" class="host-sprite" src="./assets/ui/host/host-cheer.png" alt="" />
+      <p id="host-react-line" class="host-speech-bubble tail-left"></p>
+    </div>
 
     <div id="pause-overlay" class="pause-overlay" hidden>
       <div class="pause-card">
         <h2>Paused</h2>
-        <button id="btn-resume-game" class="btn btn-buzzer btn-gold">RESUME</button>
-        <button id="btn-quit-game" class="btn btn-buzzer btn-ghost">QUIT TO MAIN MENU</button>
+        <button id="btn-resume-game" class="sui-btn sui-btn--gold">RESUME</button>
+        <button id="btn-quit-game" class="sui-btn sui-btn--magenta">QUIT TO MENU</button>
       </div>
     </div>
 
@@ -188,23 +199,26 @@
       <div class="pause-card">
         <h2>Quit game?</h2>
         <p>Your progress will be lost.</p>
-        <button id="btn-quit-confirm" class="btn btn-buzzer btn-red">QUIT</button>
-        <button id="btn-quit-cancel" class="btn btn-buzzer btn-ghost">CANCEL</button>
+        <button id="btn-quit-confirm" class="sui-btn sui-btn--red">QUIT</button>
+        <button id="btn-quit-cancel" class="sui-btn sui-btn--magenta">CANCEL</button>
       </div>
     </div>
   </section>
 
   <section id="screen-scoreboard" class="screen screen-scoreboard" hidden aria-label="Final Scoreboard">
     <div class="trophy-wrap">
-      <span class="trophy-icon" aria-hidden="true">🏆</span>
+      <div class="winner-row">
+        <img id="winner-host" class="host-sprite host-md" src="./assets/ui/host/host-cheer.png" alt="" />
+        <img class="trophy-img" src="./assets/ui/icons/icon-trophy.svg" alt="" />
+      </div>
       <h1 id="winner-name" class="winner-name">Player 1 Wins!</h1>
       <p class="winner-sub">Stay cool, champ.</p>
     </div>
     <div id="scoreboard-list" class="scoreboard-list"></div>
     <div id="awards-list" class="awards-list"></div>
-    <div class="scoreboard-actions">
-      <button id="btn-play-again" class="btn btn-buzzer btn-gold">PLAY AGAIN</button>
-      <button id="btn-scoreboard-menu" class="btn btn-buzzer btn-ghost">MAIN MENU</button>
+    <div class="btn-row scoreboard-actions">
+      <button id="btn-play-again" class="sui-btn sui-btn--gold"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-replay.svg" alt="" />PLAY AGAIN</span></button>
+      <button id="btn-scoreboard-menu" class="sui-btn sui-btn--magenta"><span class="sui-label"><img class="sui-ico" src="./assets/ui/icons/icon-home.svg" alt="" />MENU</span></button>
     </div>
   </section>
 

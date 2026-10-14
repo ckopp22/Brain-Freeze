@@ -1,0 +1,67 @@
+/* Brain Freeze snowy UI kit: design tokens + button classes.
+   URLs are relative to THIS file. If you move it (e.g. into css/), fix the url() paths. */
+:root {
+  --bf-navy: #0B1633;      --bf-navy-2: #12306B;
+  --bf-ice: #7FD8FF;       --bf-frost: #F2FBFF;
+  --bf-pink: #FF3D9A;      --bf-gold: #FFC531;
+  --bf-green: #36E6A0;     --bf-red: #FF5C5C;
+  --bf-display: "Bungee", "Lilita One", Impact, "Arial Black", sans-serif;
+  --bf-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* pill buttons: size is 320x108, text is centered on the button body */
+.sui-btn {
+  display: inline-grid; place-items: center;
+  width: min(320px, 86vw); aspect-ratio: 320 / 108;
+  border: 0; padding: 0 8% 0; background: center / 100% 100% no-repeat;
+  font: 400 clamp(20px, 6vw, 28px)/1 var(--bf-display); letter-spacing: .04em;
+  color: var(--bf-navy); text-shadow: 0 1px 0 rgba(255,255,255,.55);
+  cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+}
+.sui-btn:active, .sui-btn.is-pressed { padding-top: 4%; }
+.sui-btn--gold    { background-image: url("buttons/btn-gold.svg"); }
+.sui-btn--ice     { background-image: url("buttons/btn-ice.svg"); }
+.sui-btn--green   { background-image: url("buttons/btn-green.svg");   color: #fff; text-shadow: 0 2px 0 rgba(8,92,64,.8); }
+.sui-btn--red     { background-image: url("buttons/btn-red.svg");     color: #fff; text-shadow: 0 2px 0 rgba(122,20,20,.8); }
+.sui-btn--magenta { background-image: url("buttons/btn-magenta.svg"); color: #fff; text-shadow: 0 2px 0 rgba(142,26,90,.8); }
+.sui-btn--gold:active,    .sui-btn--gold.is-pressed    { background-image: url("buttons/btn-gold-pressed.svg"); }
+.sui-btn--ice:active,     .sui-btn--ice.is-pressed     { background-image: url("buttons/btn-ice-pressed.svg"); }
+.sui-btn--green:active,   .sui-btn--green.is-pressed   { background-image: url("buttons/btn-green-pressed.svg"); }
+.sui-btn--red:active,     .sui-btn--red.is-pressed     { background-image: url("buttons/btn-red-pressed.svg"); }
+.sui-btn--magenta:active, .sui-btn--magenta.is-pressed { background-image: url("buttons/btn-magenta-pressed.svg"); }
+
+/* round icon buttons: put an <img src="icons/icon-*.svg"> inside */
+.sui-round {
+  display: inline-grid; place-items: center; width: 64px; aspect-ratio: 1;
+  border: 0; padding: 0 0 6%; background: center / 100% 100% no-repeat; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.sui-round img { width: 54%; height: 54%; pointer-events: none; }
+.sui-round:active { padding: 12% 0 0; }
+.sui-round--gold    { background-image: url("buttons/btn-round-gold.svg"); }
+.sui-round--ice     { background-image: url("buttons/btn-round-ice.svg"); }
+.sui-round--magenta { background-image: url("buttons/btn-round-magenta.svg"); }
+.sui-round--red     { background-image: url("buttons/btn-round-red.svg"); }
+.sui-round--green   { background-image: url("buttons/btn-round-green.svg"); }
+.sui-round--gold:active    { background-image: url("buttons/btn-round-gold-pressed.svg"); }
+.sui-round--ice:active     { background-image: url("buttons/btn-round-ice-pressed.svg"); }
+.sui-round--magenta:active { background-image: url("buttons/btn-round-magenta-pressed.svg"); }
+.sui-round--red:active     { background-image: url("buttons/btn-round-red-pressed.svg"); }
+.sui-round--green:active   { background-image: url("buttons/btn-round-green-pressed.svg"); }
+
+/* segmented option (difficulty / timer pickers) */
+.sui-seg { width: 84px; aspect-ratio: 2 / 1; border: 0; background: url("buttons/seg-off.svg") center / 100% 100% no-repeat;
+  font: 400 15px/1 var(--bf-display); color: var(--bf-frost); cursor: pointer; }
+.sui-seg[aria-pressed="true"] { background-image: url("buttons/seg-on.svg"); color: var(--bf-navy); }
+
+/* surfaces */
+.sui-panel  { background: url("frames/panel-ice.svg") center / 100% 100% no-repeat; padding: 36px 28px 28px; color: var(--bf-frost); }
+.sui-studio { background: var(--bf-navy) url("backgrounds/bg-studio-portrait.svg") center / cover no-repeat; }
+@media (min-width: 700px) { .sui-studio { background-image: url("backgrounds/bg-studio-wide.svg"); } }
+.sui-snow   { background: url("backgrounds/tile-snow.svg") 0 0 / 256px 256px repeat; animation: sui-snow 14s linear infinite; }
+@keyframes sui-snow { to { background-position: 40px 256px; } }
+.sui-card-front { background: url("frames/card-front.svg") center / 100% 100% no-repeat; }
+.sui-card-back  { background: url("frames/card-back.svg")  center / 100% 100% no-repeat; }
+.sui-chip        { background: url("frames/chip-player.svg") center / 100% 100% no-repeat; }
+.sui-chip.is-active { background-image: url("frames/chip-player-active.svg"); }
+@media (prefers-reduced-motion: reduce) { .sui-snow { animation: none; } }

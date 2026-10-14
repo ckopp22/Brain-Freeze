@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+  <title>frosted control panel (use as 9-slice, slice ~28px)</title>
+  <rect x="4" y="14" width="312" height="182" rx="24" fill="#12306B" fill-opacity=".92" stroke="#7FD8FF" stroke-width="4"/>
+  <rect x="12" y="22" width="296" height="166" rx="18" fill="none" stroke="#fff" stroke-opacity=".14" stroke-width="2"/>
+  <path d="M26 22 Q42.8 -8.0 59.5 22 Q76.2 -0.8 93.0 22 Q109.8 -8.0 126.5 22 Q143.2 -0.8 160.0 22 Q176.8 -8.0 193.5 22 Q210.2 -0.8 227.0 22 Q243.8 -8.0 260.5 22 Q277.2 -0.8 294.0 22 L294 26 L26 26 Z" fill="#fff" stroke="#BFE9FF" stroke-width="2" stroke-linejoin="round"/>
+</svg>

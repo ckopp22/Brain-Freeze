@@ -7,6 +7,20 @@
   height: 100%;
 }
 
+.frost-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: url("../assets/ui/backgrounds/overlay-frost-edge.svg") center / 100% 100% no-repeat;
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+
+.frost-overlay.is-on {
+  opacity: 1;
+}
+
 @keyframes bf-pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.04); }
@@ -17,8 +31,38 @@
   to { opacity: 1; }
 }
 
+@keyframes bf-chase {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes bf-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes bf-sweep {
+  from { transform: rotate(-9deg); }
+  to { transform: rotate(9deg); }
+}
+
+@keyframes bf-drop {
+  0% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+  70% { transform: translateY(8px) scale(0.98); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes bf-pop-in {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
 .screen {
   animation: bf-fade-in 0.25s ease;
+}
+
+.logo-drop {
+  animation: bf-drop 0.9s cubic-bezier(0.2, 1.2, 0.4, 1) both;
 }
 
 @keyframes bf-ring-pulse {
@@ -26,7 +70,7 @@
   50% { filter: drop-shadow(0 0 8px var(--red)); }
 }
 
-.timer-wrap.is-urgent .timer-ring-fg {
+.timer-wrap.is-urgent .timer-ring {
   animation: bf-ring-pulse 0.5s ease-in-out infinite;
 }
 
@@ -49,22 +93,6 @@
   animation: bf-stamp-slam 0.4s ease-out;
 }
 
-@keyframes bf-frost-crawl {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.card-stage.is-frozen::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(242,251,255,0.9), rgba(242,251,255,0.3) 70%);
-  animation: bf-frost-crawl 0.5s ease-out;
-  pointer-events: none;
-  border-radius: var(--radius);
-  z-index: 1;
-}
-
 @keyframes bf-snowfall {
   from { transform: translateY(-10px) rotate(0deg); }
   to { transform: translateY(600px) rotate(360deg); }
@@ -80,27 +108,30 @@
 
 @keyframes bf-score-pop {
   0% { transform: scale(1); }
-  50% { transform: scale(1.3); color: var(--green); }
+  50% { transform: scale(1.5); color: var(--green); }
   100% { transform: scale(1); }
 }
 
-.hud-chip.is-scoring .hud-chip-name {
+.hud-chip.is-scoring .hud-chip-score {
   animation: bf-score-pop 0.5s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .screen {
+  .screen,
+  .logo-drop,
+  .spotlight-sweep,
+  .host-react,
+  .game-card.is-entering,
+  .brain-freeze-stamp.is-active,
+  .confetti-piece,
+  .hud-chip.is-scoring .hud-chip-score,
+  .timer-wrap.is-urgent .timer-ring {
     animation: none;
   }
   .frost-canvas {
     display: none;
   }
-  .game-card.is-entering,
-  .brain-freeze-stamp.is-active,
-  .card-stage.is-frozen::before,
-  .confetti-piece,
-  .hud-chip.is-scoring .hud-chip-name,
-  .timer-wrap.is-urgent .timer-ring-fg {
-    animation: none;
+  .frost-overlay {
+    transition: none;
   }
 }

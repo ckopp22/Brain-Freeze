@@ -1,5 +1,5 @@
 import { PROMPTS } from "./prompts.js";
-import { AVATAR_ICONS } from "./avatars.js";
+import { AVATAR_SRCS } from "./avatars.js";
 import { createDeckContext, drawCard } from "./deck.js";
 import { saveGame, clearGame } from "./state.js";
 
@@ -15,7 +15,7 @@ function findPrompt(id) {
 export function newGame(settings) {
   const players = settings.names.slice(0, settings.players).map((name, i) => ({
     name,
-    avatar: AVATAR_ICONS[i % AVATAR_ICONS.length],
+    avatar: AVATAR_SRCS[i % AVATAR_SRCS.length],
     score: 0,
     correct: 0,
     played: 0,

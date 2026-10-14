@@ -11,52 +11,63 @@ const CATEGORY_BADGES = {
   OUT: "⛵ BOATS, ROADS & SPORTS",
 };
 
-const SNOWFLAKES = { E: "❄️", M: "❄️❄️", H: "❄️❄️❄️" };
-
-const RING_CIRCUMFERENCE = 276.46;
+const SNOWFLAKE_COUNT = { E: 1, M: 2, H: 3 };
+const SNOWFLAKE_SRC = "./assets/ui/icons/icon-snowflake.svg";
 
 export function categoryBadge(cat) {
   return CATEGORY_BADGES[cat] || cat;
 }
 
-export function difficultySnowflakes(diff) {
-  return SNOWFLAKES[diff] || "❄️";
+export function renderSnowflakes(container, diff) {
+  container.textContent = "";
+  container.setAttribute("aria-label", `Difficulty ${SNOWFLAKE_COUNT[diff] || 1} of 3`);
+  for (let i = 0; i < (SNOWFLAKE_COUNT[diff] || 1); i++) {
+    const img = document.createElement("img");
+    img.src = SNOWFLAKE_SRC;
+    img.alt = "";
+    container.appendChild(img);
+  }
 }
 
 export function renderHud(container, game, scoringIndex = -1) {
   container.innerHTML = "";
+  const current = game.turn % game.players.length;
   game.players.forEach((p, i) => {
     const chip = document.createElement("div");
     chip.className = "hud-chip";
-    if (i === game.turn % game.players.length) chip.classList.add("is-current");
+    if (i === current) chip.classList.add("is-current");
     if (i === scoringIndex) chip.classList.add("is-scoring");
 
-    const avatar = document.createElement("div");
+    const avatar = document.createElement("img");
     avatar.className = "hud-chip-avatar";
-    avatar.textContent = p.avatar;
+    avatar.src = p.avatar;
+    avatar.alt = "";
 
-    const name = document.createElement("div");
+    const name = document.createElement("span");
     name.className = "hud-chip-name";
     name.textContent = p.name;
 
-    const thermo = document.createElement("div");
-    thermo.className = "hud-thermo";
-    const filled = Math.min(10, Math.round(p.score / 100));
-    for (let s = 0; s < 10; s++) {
-      const seg = document.createElement("span");
-      seg.className = "hud-thermo-seg" + (s < filled ? " is-filled" : "");
-      thermo.appendChild(seg);
-    }
+    const bar = document.createElement("span");
+    bar.className = "hud-chip-bar";
+    const fill = document.createElement("span");
+    fill.className = "hud-chip-fill";
+    fill.style.setProperty("--p", `${Math.min(100, p.score / 10)}%`);
+    bar.appendChild(fill);
 
-    chip.append(avatar, name, thermo);
+    const score = document.createElement("span");
+    score.className = "hud-chip-score";
+    score.textContent = String(p.score);
+
+    chip.append(avatar, name, bar, score);
     container.appendChild(chip);
+    if (i === current) chip.scrollIntoView({ block: "nearest", inline: "center" });
   });
 }
 
 export function setTimerRing(fgEl, wrapEl, secondsEl, remainingMs, totalMs) {
   if (totalMs <= 0) return;
   const ratio = Math.max(0, Math.min(1, remainingMs / totalMs));
-  fgEl.style.strokeDashoffset = String(RING_CIRCUMFERENCE * (1 - ratio));
+  fgEl.style.strokeDashoffset = String(100 * (1 - ratio));
   secondsEl.textContent = String(Math.ceil(remainingMs / 1000));
 
   let color = "var(--ice)";

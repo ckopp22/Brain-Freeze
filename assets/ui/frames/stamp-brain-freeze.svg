@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 140" width="300" height="140">
+  <title>BRAIN FREEZE! timeout stamp (text uses font fallbacks)</title>
+  <g transform="rotate(-8 150 70)">
+    <rect x="12" y="18" width="276" height="104" rx="16" fill="#0B1633" fill-opacity=".55" stroke="#FF5C5C" stroke-width="8"/>
+    <rect x="22" y="28" width="256" height="84" rx="10" fill="none" stroke="#FF5C5C" stroke-width="2.5" stroke-opacity=".8"/>
+    <text x="150" y="68" text-anchor="middle" font-family="Bungee, 'Lilita One', Impact, 'Arial Black', sans-serif" font-weight="900" font-size="40" textLength="220" lengthAdjust="spacingAndGlyphs" fill="#FF5C5C">BRAIN</text>
+    <text x="150" y="106" text-anchor="middle" font-family="Bungee, 'Lilita One', Impact, 'Arial Black', sans-serif" font-weight="900" font-size="40" textLength="236" lengthAdjust="spacingAndGlyphs" fill="#FF5C5C">FREEZE!</text>
+    <path d="M34 28 L52 52 L44 64 M262 112 L248 92 L256 80" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

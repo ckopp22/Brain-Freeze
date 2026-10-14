@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+  <title>single spotlight cone + floor pool (overlay; animate with rotate / translateX)</title>
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.38"/><stop offset="1" stop-color="#7FD8FF" stop-opacity="0"/></linearGradient>
+  </defs>
+<polygon points="300,-10 40,820 560,820" fill="url(#b)"/><ellipse cx="300" cy="830" rx="270" ry="46" fill="#CDEFFF" opacity=".28"/><ellipse cx="300" cy="830" rx="160" ry="26" fill="#fff" opacity=".28"/>
+</svg>
