@@ -127,6 +127,7 @@ function syncStepperDisplay() {
 function renderPlayerNames() {
   const container = document.getElementById("player-names");
   container.innerHTML = "";
+  container.dataset.count = String(settings.players);
 
   while (settings.names.length < settings.players) {
     settings.names.push(`Player ${settings.names.length + 1}`);

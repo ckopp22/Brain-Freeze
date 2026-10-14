@@ -140,9 +140,20 @@
   font-style: italic;
 }
 
-/* Player Setup */
+/* Player Setup (compact so it fits one screen without scrolling) */
 #screen-setup {
-  gap: 8px;
+  gap: 6px;
+  padding-left: calc(var(--safe-left) + 12px);
+  padding-right: calc(var(--safe-right) + 12px);
+}
+
+#screen-setup .marquee-small {
+  width: min(56%, 200px);
+  margin-top: 0;
+}
+
+#screen-setup .marquee-title-small {
+  font-size: clamp(0.9rem, 4.6vw, 1.2rem);
 }
 
 .setup-scroll {
@@ -152,18 +163,25 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: center;
+  gap: 2px;
 }
 
-.control-card {
+#screen-setup .control-card {
   width: 100%;
   flex-shrink: 0;
+  border-width: 26px 14px 14px;
+  border-image: url("../assets/ui/frames/panel-ice.svg") 40 fill / 26px 14px 14px stretch;
 }
 
 .control-label {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--ice);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+}
+
+.control-label-gap {
+  margin-top: 10px;
 }
 
 .stepper {
@@ -174,46 +192,51 @@
 }
 
 .stepper-btn {
-  width: 52px;
+  width: 46px;
 }
 
 .stepper-value {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   min-width: 2ch;
   text-align: center;
 }
 
 .player-names {
-  margin-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.player-names[data-count="1"] {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .player-name-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  min-width: 0;
 }
 
 .player-avatar-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
 }
 
 .player-name-input {
   flex: 1;
   min-width: 0;
-  min-height: 44px;
-  padding: 8px 12px;
-  border-radius: 12px;
+  min-height: 40px;
+  padding: 6px 8px;
+  border-radius: 10px;
   border: 2px solid rgba(127, 216, 255, 0.5);
   background: var(--frost);
   color: var(--navy);
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.9rem;
   user-select: text;
 }
 
@@ -228,19 +251,19 @@
 
 .segmented {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .seg-btn {
-  flex: 0 0 96px;
-  height: 48px;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 44px;
   padding: 0;
   border: 0;
   background: url("../assets/ui/buttons/seg-off.svg") center / 100% 100% no-repeat;
   color: var(--frost);
-  font: 400 15px/1 var(--font-display);
+  font: 400 13px/1 var(--font-display);
+  white-space: nowrap;
 }
 
 .seg-btn.is-active {
@@ -249,7 +272,13 @@
 }
 
 .setup-actions {
-  padding-top: 2px;
+  padding-top: 0;
+}
+
+@media (max-height: 720px) {
+  #screen-setup .marquee-small {
+    display: none;
+  }
 }
 
 /* Get Ready */
