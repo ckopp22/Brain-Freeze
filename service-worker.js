@@ -1,4 +1,4 @@
-const CACHE_NAME = "brain-freeze-v8";
+const CACHE_NAME = "brain-freeze-v9";
 
 const PRECACHE_URLS = [
   "./",
