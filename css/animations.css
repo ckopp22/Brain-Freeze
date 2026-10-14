@@ -12,7 +12,7 @@
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  background: url("../assets/ui/backgrounds/overlay-frost-edge.svg") center / 100% 100% no-repeat;
+  background: url("../assets/ui/backgrounds/overlay-frost-edge-stretch.svg") center / 100% 100% no-repeat;
   opacity: 0;
   transition: opacity 0.6s ease-out;
 }
