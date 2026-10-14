@@ -1,4 +1,4 @@
-const CACHE_NAME = "brain-freeze-v7";
+const CACHE_NAME = "brain-freeze-v8";
 
 const PRECACHE_URLS = [
   "./",
@@ -103,7 +103,6 @@ const PRECACHE_URLS = [
   "./assets/ui/icons/icon-trophy.svg",
   "./assets/ui/tokens.css",
   "./assets/audio/brain-freeze-music.m4a",
-  "./assets/icons/icon.svg",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/icons/icon-maskable-512.png",
