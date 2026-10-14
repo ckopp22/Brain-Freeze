@@ -15,10 +15,17 @@ function initSplash() {
     unlockAudio();
     play("marquee");
     screens.splash.removeEventListener("click", goToMenu);
+    document.removeEventListener("keydown", onKey);
     enterMenu();
   };
+  const onKey = (e) => {
+    if (e.code === "Space" || e.code === "Enter") {
+      e.preventDefault();
+      goToMenu();
+    }
+  };
   screens.splash.addEventListener("click", goToMenu);
-  setTimeout(goToMenu, 1500);
+  document.addEventListener("keydown", onKey);
 }
 
 let hostLineTimer = null;
