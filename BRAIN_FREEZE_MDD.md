@@ -79,7 +79,7 @@ First player to **1,000 points (10 correct cards)** wins the game.
 Fields (all on one screen, stacked "control panel" cards):
 - **Players:** stepper 1–8 (default 2). Under it, name inputs appear for each player with a default ("Player 1"…) and an auto-assigned icy avatar/color (penguin, polar bear, snowflake, igloo, yeti, ice cube, snowman, narwhal).
 - **Difficulty:** segmented control: **Easy / Medium / Hard** (default Medium). See deck weighting in Section 5.
-- **Timer duration:** segmented control: **15s / 30s / 45s / 60s / No Timer** (default 30s).
+- **Timer duration:** segmented control: **15s / 30s / No Timer** (default 30s).
 - **PLAY** button (disabled only if a name is blank or duplicated; empty names auto-fill).
 - **Back** button to the menu.
 - Settings are remembered in `localStorage` for next time.
@@ -122,7 +122,7 @@ Fields (all on one screen, stacked "control panel" cards):
 - Round counter: "Round 4".
 
 ### 4.4 Timer Behavior
-- Options: 15 / 30 / 45 / 60 seconds, or **No Timer**.
+- Options: 15 or 30 seconds, or **No Timer**.
 - Timer starts when the card prompt is shown after the player taps **READY**.
 - Timer pauses if the game is paused or the tab/app is backgrounded (`visibilitychange`).
 - With **No Timer**, the ring is replaced by a snowflake and the player taps **FLIP CARD** when ready.
@@ -325,7 +325,7 @@ Short, clean, family-friendly one-liners, rotated randomly and never repeated ba
 - [ ] 500 prompts, unique IDs, no duplicate prompt text, every prompt has an answer.
 - [ ] Each difficulty setting draws the expected E/M/H mix (spot check 100 draws).
 - [ ] 1–8 players all work; names/avatars unique; settings persist.
-- [ ] All four timer lengths and No Timer behave correctly; timer pauses on tab hide.
+- [ ] Both timer lengths (15s, 30s) and No Timer behave correctly; timer pauses on tab hide.
 - [ ] Brain Freeze animation + auto-FROZE on timeout.
 - [ ] NAILED IT adds exactly 100; game ends at 1,000 / 10th correct card.
 - [ ] Thaw lifeline works once per player and never repeats a card.

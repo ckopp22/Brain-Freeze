@@ -111,6 +111,7 @@ function wireInstallPrompt() {
 }
 
 function initSetupForm() {
+  if (![0, 15, 30].includes(settings.timer)) settings.timer = 30;
   renderPlayerNames();
   syncStepperDisplay();
 
