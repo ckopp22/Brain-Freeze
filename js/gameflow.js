@@ -47,7 +47,12 @@ const el = {
   awardsList: document.getElementById("awards-list"),
   btnPlayAgain: document.getElementById("btn-play-again"),
   btnScoreboardMenu: document.getElementById("btn-scoreboard-menu"),
+  announcer: document.getElementById("aria-announcer"),
 };
+
+function announce(text) {
+  el.announcer.textContent = text;
+}
 
 export function startNewGame(settings) {
   game = Game.newGame(settings);
@@ -99,6 +104,7 @@ function enterTurnPhase() {
   const soloMode = game.players.length === 1;
 
   resetCardVisuals();
+  announce(`${player.name}'s turn.`);
 
   if (soloMode || game.current.phase !== "intro") {
     showCardStage();
@@ -117,6 +123,7 @@ el.btnReady.addEventListener("click", () => {
 });
 
 function showCardStage() {
+  el.turnIntro.hidden = true;
   el.cardStage.hidden = false;
   el.gameCard.classList.add("is-entering");
   setTimeout(() => el.gameCard.classList.remove("is-entering"), 300);
@@ -188,6 +195,7 @@ function startTimer() {
     if (second !== lastTickSecond) {
       lastTickSecond = second;
       play(remaining <= 5000 ? "timerTickFast" : "timerTick");
+      if (second === 10 || second === 5) announce(`${second} seconds left.`);
     }
     UI.setTimerRing(el.timerRingFg, el.timerWrap, el.timerSeconds, remaining, totalMs);
   }, 100);
@@ -233,18 +241,21 @@ function onTimeout() {
   el.btnFlip.hidden = true;
   el.judgeActions.hidden = true;
   play("brainFreeze");
+  announce("Brain freeze! Time's up.");
   Game.timeoutFreeze(game);
   setTimeout(() => finishJudging(), 1400);
 }
 
 el.btnNailed.addEventListener("click", () => {
   play("nailedIt");
+  announce("Nailed it! Plus 100 points.");
   Game.judge(game, true);
   finishJudging();
 });
 
 el.btnFroze.addEventListener("click", () => {
   play("froze");
+  announce("Froze. No points.");
   Game.judge(game, false);
   finishJudging();
 });
@@ -387,5 +398,26 @@ document.addEventListener("visibilitychange", () => {
       game.current.startedAt += Date.now() - tabHiddenAt;
     }
     tabHiddenAt = null;
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (!game || game.status !== "playing") return;
+  if (!el.pauseOverlay.hidden || !el.quitConfirmOverlay.hidden) return;
+
+  if ((e.code === "Space" || e.code === "Enter") && !el.turnIntro.hidden) {
+    e.preventDefault();
+    el.btnReady.click();
+  } else if ((e.code === "Space" || e.code === "Enter") && !el.btnFlip.hidden) {
+    e.preventDefault();
+    el.btnFlip.click();
+  } else if (!el.judgeActions.hidden) {
+    if (e.key === "y" || e.key === "Y") {
+      e.preventDefault();
+      el.btnNailed.click();
+    } else if (e.key === "n" || e.key === "N") {
+      e.preventDefault();
+      el.btnFroze.click();
+    }
   }
 });

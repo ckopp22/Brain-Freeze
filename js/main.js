@@ -5,6 +5,7 @@ import { AVATAR_ICONS } from "./avatars.js";
 import { showScreen, getScreen } from "./router.js";
 import * as GameFlow from "./gameflow.js";
 import { registerServiceWorker } from "./pwa.js";
+import { startFrost } from "./frost.js";
 
 const settings = loadSettings();
 const screens = { splash: getScreen("splash") };
@@ -219,6 +220,7 @@ function boot() {
   wireInstallPrompt();
   wireSetupForm();
   registerServiceWorker();
+  startFrost();
 }
 
 boot();

@@ -18,6 +18,8 @@ const PRECACHE_URLS = [
   "./js/gameflow.js",
   "./js/ui.js",
   "./js/prompts.js",
+  "./js/pwa.js",
+  "./js/frost.js",
   "./assets/host.svg",
   "./assets/icons/icon.svg",
   "./assets/icons/icon-192.png",

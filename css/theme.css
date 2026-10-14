@@ -32,11 +32,11 @@ html, body {
   color: var(--frost);
   font-family: var(--font-body);
   -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
 }
 
 body {
   overflow: hidden;
-  touch-action: none;
 }
 
 .app-host {
