@@ -8,6 +8,7 @@ let musicOn = loadSettings().music !== false;
 let musicEl = null;
 let ctx = null;
 let noiseBuffer = null;
+let gamePaused = false;
 
 export function isSoundOn() {
   return soundOn;
@@ -39,6 +40,21 @@ export function toggleMusic() {
   return musicOn;
 }
 
+function audioAllowed() {
+  return !document.hidden && !gamePaused;
+}
+
+function syncAudio() {
+  if (musicEl) {
+    if (musicOn && audioAllowed()) musicEl.play().catch(() => {});
+    else musicEl.pause();
+  }
+  if (ctx) {
+    if (audioAllowed()) ctx.resume();
+    else ctx.suspend();
+  }
+}
+
 export function startMusic() {
   if (!musicOn) return;
   if (!musicEl) {
@@ -47,14 +63,25 @@ export function startMusic() {
     musicEl.volume = MUSIC_VOLUME;
     musicEl.preload = "auto";
   }
-  musicEl.play().catch(() => {});
+  if (audioAllowed()) musicEl.play().catch(() => {});
 }
 
-document.addEventListener("visibilitychange", () => {
-  if (!musicEl) return;
-  if (document.hidden) musicEl.pause();
-  else if (musicOn) musicEl.play().catch(() => {});
+export function pauseAudio() {
+  gamePaused = true;
+  syncAudio();
+}
+
+export function resumeAudio() {
+  gamePaused = false;
+  syncAudio();
+}
+
+document.addEventListener("visibilitychange", syncAudio);
+window.addEventListener("pagehide", () => {
+  if (musicEl) musicEl.pause();
+  if (ctx) ctx.suspend();
 });
+window.addEventListener("pageshow", syncAudio);
 
 export function unlockAudio() {
   startMusic();
@@ -63,7 +90,7 @@ export function unlockAudio() {
     if (!AudioCtx) return;
     ctx = new AudioCtx();
   }
-  if (ctx.state === "suspended") ctx.resume();
+  if (audioAllowed() && ctx.state === "suspended") ctx.resume();
 }
 
 function getNoiseBuffer() {
@@ -172,7 +199,7 @@ const EFFECTS = {
 };
 
 export function play(name) {
-  if (!soundOn || !ctx) return;
+  if (!soundOn || !ctx || !audioAllowed()) return;
   const effect = EFFECTS[name];
   if (effect) effect();
 }

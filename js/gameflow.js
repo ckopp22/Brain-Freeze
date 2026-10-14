@@ -2,7 +2,7 @@ import { showScreen } from "./router.js";
 import * as Game from "./game.js";
 import * as UI from "./ui.js";
 import { loadGame } from "./state.js";
-import { play, isSoundOn, toggleSound, isMusicOn, toggleMusic } from "./audio.js";
+import { play, isSoundOn, toggleSound, isMusicOn, toggleMusic, pauseAudio, resumeAudio } from "./audio.js";
 import { hostLine, setHostPose } from "./host.js";
 import { AVATAR_SRCS } from "./avatars.js";
 
@@ -384,6 +384,7 @@ function pauseGame() {
   if (manualPaused) return;
   manualPaused = true;
   pausedAt = Date.now();
+  pauseAudio();
 }
 
 function unpauseGame() {
@@ -393,6 +394,7 @@ function unpauseGame() {
     game.current.startedAt += Date.now() - pausedAt;
   }
   pausedAt = null;
+  resumeAudio();
 }
 
 el.btnGameSound.addEventListener("click", () => {
@@ -438,6 +440,7 @@ el.btnQuitConfirm.addEventListener("click", () => {
   el.quitConfirmOverlay.hidden = true;
   el.pauseOverlay.hidden = true;
   Game.finishGame(game);
+  resumeAudio();
   import("./main.js").then((m) => m.enterMenu());
 });
 
